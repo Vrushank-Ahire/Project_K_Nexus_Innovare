@@ -1,0 +1,9 @@
+flask
+flask-cors
+openai
+python-dotenv
+chromadb
+sentence-transformers
+pymongo
+pillow
+requests

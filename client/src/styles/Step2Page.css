@@ -1,0 +1,257 @@
+.step2-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.step-header {
+  display: flex;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.step-indicator:first-child::after {
+  content: '';
+  position: absolute;
+  top: 25px;
+  right: -52px;
+  width: 50px;
+  height: 2px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.step {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.step.active {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+
+.step.completed {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+
+.step-label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.perspectives-section {
+  width: 100%;
+}
+
+.perspectives-section h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.perspectives-scroll {
+  overflow-x: auto;
+  padding: 20px 0;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.perspectives-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.perspectives-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.perspectives-scroll::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 10px;
+}
+
+.perspectives-scroll::-webkit-scrollbar-thumb:hover {
+  background: #c1c1c1;
+}
+
+.perspectives-carousel {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  width: max-content;
+}
+
+.perspective-card {
+  width: 320px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.perspective-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.perspective-card.selected {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+.perspective-icon {
+  font-size: 24px;
+  color: #4CAF50;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #e8f5e9;
+  border-radius: 50%;
+}
+
+.perspective-content {
+  flex: 1;
+}
+
+.perspective-type {
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.perspective-card h3 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.perspective-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.selected-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.back-button, .continue-button {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.back-button:hover {
+  background-color: #eaeaea;
+}
+
+.back-button i {
+  margin-right: 8px;
+}
+
+.continue-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.continue-button:hover:not(:disabled) {
+  background-color: #3d9140;
+}
+
+.continue-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.continue-button i {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .back-button, .continue-button {
+    width: 100%;
+    justify-content: center;
+  }
+} 
