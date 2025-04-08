@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap'); /* Need heavier weights */
+
+/* Main App layout */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  /* background: linear-gradient(to bottom, #1f2937, #111827); Remove gradient */
+  background-color: #111; /* Netflix Black */
+  font-family: 'Poppins', sans-serif;
+  color: #fff; /* Default white text */
+  font-weight: 400;
+}
+
+/* Background element - controlled via JS now */
+.film-strip-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.04; /* Keep it very subtle */
+}
+
+.film-strip {
+  display: flex;
+  width: max-content;
+  position: absolute;
+  opacity: 1; 
+  will-change: transform;
+  /* Animation applied via inline style if needed */
+}
+
+.film-tile {
+  width: 150px;
+  height: 210px;
+  flex-shrink: 0;
+  margin: 0 10px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+}
+
+/* Re-add Position and Animate Strips */
+.strip-1 {
+  top: 10%;
+  left: 0;
+  /* animation: scroll-left 60s infinite linear; */
+  animation: scroll-left 120s infinite linear; /* Slower */
+}
+
+.strip-2 {
+  top: 40%;
+  left: 0;
+  /* animation: scroll-left 80s infinite linear reverse; */
+  animation: scroll-left 320s infinite linear reverse; /* Even Slower */
+}
+
+.strip-3 {
+  top: 70%;
+  left: 0;
+  /* animation: scroll-left 50s infinite linear; */
+  animation: scroll-left 100s infinite linear; /* Slower */
+}
+
+/* Keep scroll animation definition if dynamically applied */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Distance needs CSS var or dynamic calculation */
+    /* Example: transform: translateX(-1700px); */ 
+     transform: translateX(calc(-1 * var(--scroll-distance, 1700px))); /* Provide fallback */
+  }
+}
+
+.App-header {
+  /* background: rgba(31, 41, 55, 0.6); */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); /* Gradient like Netflix */
+  backdrop-filter: none; 
+  padding: 1rem 3%; /* Adjust padding */
+  text-align: left; /* Align left */
+  border-bottom: none; /* Remove border */
+  position: absolute; /* Float header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.header-content {
+  display: flex;
+  /* justify-content: center; Remove center alignment */
+  justify-content: flex-start; /* Align title to the left */
+  align-items: center;
+  max-width: 1920px; 
+  margin: 0 auto;
+  height: 100%; /* Ensure vertical alignment works */
+}
+
+.App-header h1 {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; 
+  color: #e50914; /* Netflix Red */
+  font-weight: 700; /* Bold */
+  font-size: 2rem; /* Adjust size */
+  letter-spacing: -0.5px; /* Adjust spacing */
+  text-transform: uppercase; /* Uppercase like logo */
+}
+
+/* Remove Header p styling */
+/* .App-header p { ... } */
+
+/* Remove Sign In Button Styles */
+/*
+.header-actions .btn-signin {
+  background-color: #e50914; 
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.header-actions .btn-signin:hover {
+  background-color: #f40612; 
+}
+*/
+
+.App-main {
+  flex: 1;
+  position: relative;
+  z-index: 1; /* Below header */
+  width: 100%;
+  padding: 0; /* Remove padding, handled by children */
+  display: flex; /* Use flex for centering content */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.App-footer {
+  padding: 2rem 5%;
+  background: transparent;
+  color: #737373; /* Netflix footer grey */
+  text-align: center; /* Center footer text */
+  font-size: 0.8rem;
+  border-top: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove other global styles like .results-container, .perspective-* if not used */
+
+/* Remove film strip responsive for now */
+
+:root {
+  --tile-width: 150px;
+  --tile-height: 210px;
+  --tile-margin: 10px;
+  /* --num-images-original: 55; */
+  --num-images-original: 63; /* Updated count for new list */
+  --scroll-distance: calc(var(--num-images-original) * (var(--tile-width) + 2 * var(--tile-margin)));
+}

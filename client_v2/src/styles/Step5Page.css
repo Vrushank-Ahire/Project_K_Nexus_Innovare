@@ -1,0 +1,561 @@
+/* .step5-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: white;
+  padding: 2rem;
+}
+
+.step-header {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+}
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.step-indicator:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 17px;
+  right: -2rem;
+  width: 2rem;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.step {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.step.completed {
+  background-color: #e74c4c;
+  border-color: #e74c4c;
+  color: white;
+}
+
+.step.active {
+  background-color: #e74c4c;
+  border-color: #e74c4c;
+  color: white;
+  box-shadow: 0 0 15px rgba(231, 76, 76, 0.5);
+}
+
+.step-label {
+  font-size: 0.75rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.story-title-container {
+  text-align: center;
+  margin: 2rem 0 3rem;
+}
+
+.story-title-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.story-title-container .tagline {
+  font-style: italic;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #141414;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.episodes-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.episode-list {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.episode-list h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.episode-item {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #242424;
+}
+
+.episode-item:hover {
+  background-color: #2a2a2a;
+  transform: translateY(-2px);
+}
+
+.episode-item.active {
+  background-color: #e74c4c;
+  color: white;
+}
+
+.episode-content {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 2rem;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.episode-content h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.reading-content {
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.generate-episode-panel {
+  text-align: center;
+  padding: 3rem;
+}
+
+.generate-episode-panel h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.generate-episode-panel p {
+  color: #999;
+  margin-bottom: 2rem;
+}
+
+.generate-button, 
+.back-button, 
+.download-episode-button,
+.next-episode-button,
+.download-all-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.generate-button {
+  background-color: #e74c4c;
+  color: white;
+  font-size: 1rem;
+}
+
+.generate-button:hover {
+  background-color: #d43d3d;
+  transform: translateY(-2px);
+}
+
+.back-button {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #3a3a3a;
+}
+
+.download-episode-button,
+.download-all-button {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.download-episode-button:hover,
+.download-all-button:hover {
+  background-color: #3a3a3a;
+}
+
+.next-episode-button {
+  background-color: #e74c4c;
+  color: white;
+}
+
+.next-episode-button:hover {
+  background-color: #d43d3d;
+}
+
+.loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #e74c4c;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: rgba(231, 76, 76, 0.1);
+  color: #e74c4c;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .step5-container {
+    padding: 1rem;
+  }
+
+  .step-header {
+    gap: 1rem;
+  }
+
+  .episodes-content {
+    grid-template-columns: 1fr;
+  }
+
+  .episode-list {
+    height: auto;
+    max-height: 300px;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+  }
+
+  .generate-button, 
+  .back-button, 
+  .download-episode-button,
+  .next-episode-button,
+  .download-all-button {
+    width: 100%;
+    justify-content: center;
+  }
+}  */
+
+.step5-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.step-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.step-indicator:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 25px;
+  right: -52px;
+  width: 50px;
+  height: 2px;
+  background-color: #333;
+  z-index: 1;
+}
+
+.step {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #333;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.step.active,
+.step.completed {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+
+.step-label {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.story-title-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.story-title-container h1 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+}
+
+.story-title-container .tagline {
+  font-style: italic;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.content-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.episodes-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+}
+
+.episode-list {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.episode-list h3 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.episode-item {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+}
+
+.episode-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.episode-item.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.episode-content {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2rem;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.episode-content h3 {
+  font-size: 22px;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.reading-content {
+  line-height: 1.8;
+  color: #e0e0e0;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.generate-episode-panel {
+  text-align: center;
+  padding: 3rem;
+}
+
+.generate-episode-panel h3 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.generate-episode-panel p {
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.back-button,
+.download-episode-button,
+.next-episode-button,
+.generate-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-button {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.download-episode-button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+}
+
+.download-episode-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.next-episode-button,
+.generate-button {
+  background-color: #ff5757;
+  color: #ffffff;
+  border: none;
+}
+
+.next-episode-button:hover,
+.generate-button:hover {
+  background-color: #e04e4e;
+  transform: translateY(-2px);
+}
+
+.loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .step5-container {
+    padding: 1rem;
+  }
+
+  .episodes-content {
+    grid-template-columns: 1fr;
+  }
+
+  .episode-list,
+  .episode-content {
+    height: auto;
+    max-height: 400px;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .back-button,
+  .download-episode-button,
+  .next-episode-button,
+  .generate-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

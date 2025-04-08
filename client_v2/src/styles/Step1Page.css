@@ -1,0 +1,404 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.step1-container {
+  /* Remove all styles - Layout handled by App-main */
+  width: 100%;
+  max-width: 950px; /* Limit content width */
+  padding: 2rem; /* Add padding for content */
+  margin: 0 auto; /* Center content block if needed */
+  text-align: center; 
+  z-index: 2; /* Ensure content is above background */
+  position: relative;
+  /* Apply zoom animation after heading settles */
+  animation: slightZoomIn 0.5s ease-out forwards; 
+  animation-delay: 1.3s; /* Start after fallFromTop (0.8s + 0.5s delay) */
+}
+
+.step-header {
+  margin-bottom: 2rem; 
+  width: 100%;
+  /* max-width: 750px; Increase further */
+  max-width: 900px; /* Wider to prevent heading wrap */
+  margin-left: auto;
+  margin-right: auto;
+  display: block; 
+  text-align: center; 
+}
+
+.step-header h2 {
+  font-size: 3rem; 
+  color: #fff;
+  margin-bottom: 0.8rem; /* Restore previous margin */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  display: block; /* Ensure block display */
+  width: 100%; /* Take full width of parent */
+  /* Ensure parent has perspective for subtle 3D feel if desired */
+  /* perspective: 400px; */
+}
+
+/* Add style for highlighted text */
+.text-highlight-red {
+  color: #e50914; /* Netflix Red */
+  display: inline-block; /* Needed for transform */
+}
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.step-indicator:first-child::after {
+  content: '';
+  position: absolute;
+  top: 25px;
+  right: -52px;
+  width: 50px;
+  height: 2px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.step {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.step-label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.prompt-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.prompt-section h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.prompt-container {
+  width: 100%;
+  max-width: 680px; /* Match old max-width */
+  margin: 0 auto 1.5rem auto; /* Center and add bottom margin */
+  position: relative; /* For counter positioning? */
+}
+
+.prompt-textarea {
+  width: 100%;
+  padding: 1rem; 
+  margin-bottom: 0.5rem; /* Space for counter */
+  border: 1px solid #333; /* Darker border */
+  border-radius: 4px; 
+  font-size: 1rem;
+  min-height: 140px; 
+  box-shadow: none;
+  transition: border-color 0.2s, background-color 0.2s;
+  background-color: rgba(30, 30, 30, 0.7); /* Darker, slightly transparent */
+  color: #fff;
+  font-family: inherit;
+  font-weight: 400;
+  resize: vertical; /* Allow vertical resize */
+  line-height: 1.5;
+}
+
+.prompt-textarea::placeholder {
+  color: #8c8c8c;
+}
+
+.prompt-textarea:focus {
+  outline: none;
+  border-color: #fff; 
+  background-color: rgba(40, 40, 40, 0.8); /* Slightly lighter focus */
+  box-shadow: none;
+}
+
+.char-counter {
+  width: 100%;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #8c8c8c; /* Match placeholder */
+  margin-top: -0.25rem; /* Adjust position slightly */
+  padding-right: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  background-color: rgba(229, 9, 20, 0.15); /* Netflix red transparent */
+  color: #fdaaaa; /* Lighter red text */
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-top: 1rem; /* Space above error */
+  margin-bottom: 0; /* Reset margin */
+  font-size: 0.9rem;
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  border-left: 3px solid rgba(229, 9, 20, 0.6);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Remove Shimmer Animation Definition */
+/*
+@keyframes button-shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+*/
+
+.generate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem; 
+  background-color: #e50914 !important; /* Force Netflix Red */
+  color: #ffffff !important; /* Force white text */
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem; 
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: none;
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+  background-image: none;
+  animation: none;
+  outline: none; /* Add this to prevent default browser outline */
+}
+
+.generate-button:hover:not(:disabled) {
+  background-color: #b30710 !important; /* Force Darker Red */
+}
+
+.generate-button:active:not(:disabled) {
+  background-color: #b30710 !important; /* Force Darker Red */
+}
+
+/* Explicitly set focus state background */
+.generate-button:focus {
+  background-color: #e50914 !important; /* Force base red color on focus */
+  outline: none; 
+}
+
+/* Keep focus-visible for keyboard users */
+.generate-button:focus-visible {
+  outline: 2px solid rgba(229, 9, 20, 0.6) !important; /* Force red outline */
+  outline-offset: 2px;
+  background-color: #e50914 !important; /* Force base red */
+}
+
+.generate-button:disabled {
+  background-color: #555 !important; 
+  color: #aaa !important; 
+  cursor: not-allowed;
+  background-image: none; 
+  animation: none;
+}
+
+.loading-spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.inspiration-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.inspiration-section h2 {
+  font-size: 22px;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.inspiration-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inspiration-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.2rem;
+  border-left: 4px solid #4CAF50;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.inspiration-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.inspiration-card h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.inspiration-card p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .generate-button {
+    align-self: center;
+    width: 100%;
+  }
+}
+
+.example-prompts {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto 2rem auto; 
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  display: grid; /* Use grid */
+  grid-template-columns: repeat(2, 1fr); /* Create 2 equal columns */
+  gap: 10px; /* Keep gap */
+}
+
+.example-prompt {
+  background-color: #2d2d2d; /* Restore dark grey */
+  color: #e0e0e0; /* Restore brighter grey text */
+  padding: 0.6rem 1.1rem; /* Restore padding */
+  border-radius: 20px; /* Keep rounded */
+  font-size: 0.9rem; /* Keep size */
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid #444; /* Restore subtle grey border */
+  box-shadow: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500; /* Keep medium weight */
+  text-align: center; 
+  line-height: 1.4; 
+}
+
+.example-prompt:hover {
+  background-color: #3f3f3f; /* Restore lighter grey hover */
+  border-color: #555; /* Restore hover border */
+  color: #fff; /* Restore hover text color */
+  transform: none;
+}
+
+.example-prompt:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7); /* Restore White outline */
+  outline-offset: 2px;
+  background-color: #3f3f3f; /* Restore hover background on focus */
+}
+
+.btn-container {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Add fall-from-top animation */
+@keyframes fallFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-4em); /* Start way above */
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0.5em); /* Overshoot slightly */
+  }
+  80% {
+    transform: translateY(-0.2em); /* Bounce back up */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Settle */
+  }
+}
+
+/* Styles for word reveal animation */
+.word-reveal {
+  opacity: 0; /* Start hidden */
+  /* transform: scale(0.5); Remove scale */
+  transform: translateY(-4em); /* Initial position for animation start */
+  animation: fallFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Apply new animation */
+  /* Apply delay directly here if needed, or remove if parent controls */
+  animation-delay: 0.5s; /* Keep original delay for heading */
+}
+
+/* Add slight zoom-in animation */
+@keyframes slightZoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.03); /* Zoom in slightly */
+  }
+}
+
+/* Remove individual word delays */
+/*
+.word-ai {
+  animation-delay: 0.5s; 
+}
+
+.word-you {
+  animation-delay: 0.8s; 
+}
+*/ 
